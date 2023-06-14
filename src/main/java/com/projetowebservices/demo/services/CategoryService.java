@@ -11,15 +11,16 @@ import com.projetowebservices.demo.repositories.CategoryRepository;
 
 @Service
 public class CategoryService {
+
 	@Autowired
 	private CategoryRepository Repository;
 
-	public List<Category> findAll(){
+	public List<Category> findAll() {
 		return Repository.findAll();
 	}
-	public Category findById(long id){
+
+	public Category findById(long id) {
 		Optional<Category> obj = Repository.findById(id);
-		return obj.get(); 
-	
-}
+		return obj.get();
+	}
 }

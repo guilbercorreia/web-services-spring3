@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.projetowebservices.demo.entities.Category;
 import com.projetowebservices.demo.entities.Order;
+import com.projetowebservices.demo.entities.OrderItem;
 import com.projetowebservices.demo.entities.Product;
 import com.projetowebservices.demo.entities.User;
 import com.projetowebservices.demo.entities.enums.OrderStatus;
 import com.projetowebservices.demo.repositories.CategoryRepository;
+import com.projetowebservices.demo.repositories.OrderItemRepository;
 import com.projetowebservices.demo.repositories.OrderRepository;
 import com.projetowebservices.demo.repositories.ProductRepository;
 import com.projetowebservices.demo.repositories.UserRepository;
@@ -24,6 +26,9 @@ public class TestConfig implements CommandLineRunner {
 
 	@Autowired
 	private OrderRepository orderRepository;
+
+	@Autowired
+	private OrderItemRepository orderItemRepository;
 
 	@Autowired
 	private ProductRepository productRepository;
@@ -69,7 +74,12 @@ public class TestConfig implements CommandLineRunner {
 
 		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 
+		OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+		OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
 		
+		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
 
 	}
 }
